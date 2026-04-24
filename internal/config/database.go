@@ -5,6 +5,7 @@ import (
 	"backend-sigaji/internal/service"
 	"fmt"
 	"log"
+	"os"
 
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
@@ -12,7 +13,15 @@ import (
 
 func InitDB() *gorm.DB {
 
-	dsn := "root:@tcp(127.0.0.1:3306)/sigaji-db?parseTime=true"
+	// dsn := "root:@tcp(127.0.0.1:3306)/sigaji-db?parseTime=true"
+
+	// 1. Ambil alamat sakti dari Environment Variable Railway
+	dsn := os.Getenv("DATABASE_URL")
+
+	// 2. Kalau lagi di lokal (dsn kosong), baru pake localhost
+	if dsn == "" {
+		dsn = "root:@tcp(127.0.0.1:3306)/sigaji?charset=utf8mb4&parseTime=True&loc=Local"
+	}
 
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if err != nil {
