@@ -6,7 +6,6 @@ import (
 	"backend-sigaji/internal/repository"
 	"backend-sigaji/internal/router"
 	"backend-sigaji/internal/service"
-	"log"
 
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
@@ -14,10 +13,12 @@ import (
 
 func main() {
 	//load env
-	err := godotenv.Load()
-	if err != nil {
-		log.Fatal("Waduh, file .env tidak ditemukan bre!")
-	}
+	// err := godotenv.Load()
+	// if err != nil {
+	// 	log.Fatal("Waduh, file .env tidak ditemukan bre!")
+	// }
+
+	_ = godotenv.Load()
 
 	// 1️⃣ Init Gin
 	r := gin.Default()
