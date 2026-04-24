@@ -3,6 +3,7 @@ package service
 import (
 	"backend-sigaji/internal/model" // Sesuaikan import kalau beda nama modul
 	"errors"
+	"os"
 	"time"
 
 	"github.com/golang-jwt/jwt/v5"
@@ -11,8 +12,7 @@ import (
 	"gorm.io/gorm"
 )
 
-// Kunci rahasia buat JWT (IDEALNYA TARUH DI .env!)
-var jwtSecret = []byte("rahasia_negara_sigaji_2026")
+var jwtSecret = []byte(os.Getenv("JWT_SECRET"))
 
 type AuthService struct {
 	db *gorm.DB
