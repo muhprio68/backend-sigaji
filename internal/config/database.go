@@ -20,7 +20,7 @@ func InitDB() *gorm.DB {
 
 	// 2. Kalau lagi di lokal (dsn kosong), baru pake localhost
 	if dsn == "" {
-		dsn = "root:@tcp(127.0.0.1:3306)/sigaji?charset=utf8mb4&parseTime=True&loc=Local"
+		dsn = "root:@tcp(127.0.0.1:3306)/sigaji-db?parseTime=true"
 	}
 
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
